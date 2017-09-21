@@ -16,7 +16,7 @@ import todoSave
 
 
 def todoTestSave():
-    todoSave.todoSaveTodo("it is a test", "todoSaveTodoTxt")
+    todoSave.todoSaveTodo("it is a test", "saveToTxt")
 
 
 todoTestSave()
