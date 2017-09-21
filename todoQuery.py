@@ -11,3 +11,18 @@
 修改说明：
 修改时间：
 '''
+
+def todoQueryNewID(queryMode):
+    if queryMode=='queryInTxt':
+        return todoQueryNewIDInTxt()
+    elif queryMode=='queryInSql':
+        pass
+    elif queryMode=='queryInExcel':
+        pass
+    else:
+        pass
+
+
+def todoQueryNewIDInTxt():
+    curID = todoFileOpt('readFile', 'getID')
+    return curID+1
