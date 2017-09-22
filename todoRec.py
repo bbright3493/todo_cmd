@@ -15,21 +15,21 @@ todoRecMain
 修改时间：
 '''
 
-
+import time
+import todoFile
 
 def todoRecMain():
-	'''
-	待办事项录入主控函数
-	参数：
-	返回值：
-	'''
-	print('请输入待办事项,按回车结束录入：')
-	userTodoStr = input()
-	#todo(bb):todoGetCurrentTime()
-	#todo(bb):生成ID，规整化数据
-	#todo(bb):todoSaveMain(...)
-	print('您的待办事项"%s"已存储，当前ID是""', userTodoStr)
+    print("请输入待办事项")
+    userTodoStr = input()
+    userTodoTime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+    userTodoLog = '待办'
+    todoFile.todoFileOpt('fileWrite', 'writeOneRec', userTodoStr, userTodoTime, userTodoLog)
+    print('您的待办事项%s已存储'%(userTodoStr))
 	
 	
+def todoRecChangeLog():
+    print('请输入要改变状态的ID号')
+    userTodoID = input()
+
 
 

@@ -12,6 +12,8 @@
 修改时间：
 '''
 
+import todoFile
+
 def todoQueryNewID(queryMode):
     if queryMode=='queryInTxt':
         return todoQueryNewIDInTxt()
@@ -24,5 +26,13 @@ def todoQueryNewID(queryMode):
 
 
 def todoQueryNewIDInTxt():
-    curID = todoFileOpt('readFile', 'getID')
+    curID = todoFile.todoFileOpt('readFile', 'getID')
     return curID+1
+
+def todoQueryAllTodo():
+    todoDicts = todoFile.todoFileOpt('fileRead', 'getTodoAll')
+    for todoDict in todoDicts:
+        print(str(todoDict))
+
+def todoQueryTodoByID(todoID):
+    todoDict = todoFile.todoFileOpt('fileRead', 'getTodobyID', todoID)

@@ -23,9 +23,13 @@ def todoFileOpt(fileOpt, optCmd, *saveArgs):
             return todoFileQueryIDList(todoStr)
         elif optCmd=='getTodobyID':
             todoStr = todoReadFile()
-            return todoFileQueryByID(todoStr, saveArgs[2])
+            return todoFileQueryByID(todoStr, saveArgs[0])
+        elif optCmd=='getTodoAll':
+            todoStr = todoReadFile()
+            return todoStrConvertDict(todoStr)
     elif fileOpt=='fileWrite':
-        todoFileSave(saveArgs[0], saveArgs[1])
+        if optCmd=='writeOneRec':
+            todoFileSave(saveArgs[0], saveArgs[1], saveArgs[2])
 
 
 def todoFileQueryByID(todoStr, todoID):
@@ -33,7 +37,7 @@ def todoFileQueryByID(todoStr, todoID):
 
 
 def todoReadFile():
-    fileName = BaseDir + r'\todoSave.txt'
+    fileName = os.path.join(BaseDir, 'todoSave.txt')
     with open(fileName, 'r+') as todoFile:
         if todoFile==None:
             print('open file fail')
@@ -41,7 +45,7 @@ def todoReadFile():
         else:
             return todoFile.read()
 
-def todoFileSave(todoStr, todoTime):
+def todoFileSave(todoStr, todoTime, todoLog):
     fileName = BaseDir + r'\todoSave.txt'
     todoDict = {}
     #读取文件，得到id列表
@@ -52,6 +56,7 @@ def todoFileSave(todoStr, todoTime):
         todoDict['ID'] = 1
     todoDict['待办事项'] = todoStr
     todoDict['事项时间'] = todoTime
+    todoDict['事项状态'] = todoLog
     todoStr = str(todoDict)+';'
     print(todoStr)
     with open(fileName, 'a+') as todoFile:
@@ -88,7 +93,3 @@ def todoFileQueryIDList(todoStr):
 def todoTestStr():
     return todoFileQueryIDList(str(todoReadFile()))#
 
-
-todoFileSave(u'今天要吃饭', u'2017-09-21-09-21')
-
-print (todoTestStr())
