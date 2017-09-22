@@ -37,8 +37,7 @@ def todoSaveTodo(saveData, saveMode='saveToTxt'):
 BaseDir = os.getcwd()
 		
 def todoSaveTodoTxt(saveData):
-	fileName = BaseDir + r'\todoSave.txt'
-	
+	fileName = BaseDir + r''
 	#打开文件，写入文件
 	with open(fileName, 'w') as todoFile:
 		todoFile.write(saveData)
