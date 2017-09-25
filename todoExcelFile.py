@@ -48,6 +48,16 @@ def todoReadExcel(todoID):
     todoStatus = ws['E'+ str(todoID+1)]
     return [todoStr, todoStartTime, todoEndTime, todoStatus]
 
+def todoModifyExcel(todoID, todoStr):
+    wb = load_workbook('todoSave.xlsx')
+    ws = wb.active
+    if todoID  >  ws.max_row - 1:
+        return 0
+    else:
+        ws['B'+ str(todoID+1)] = todoStr
+        return 1
+
+
 #todo:完成按开始时间进行查询并输出的功能
 
 #todo：完成按状态进行查询并输出的功能
